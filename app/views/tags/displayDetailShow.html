@@ -1,0 +1,17 @@
+<div class="show"><a name="sh-${_show.id}" ></a>
+	<table width="100%">
+		<tr>
+			<td width="43%">
+			<a class="show-name" href="@{ShowCtrl.edit(_show.id)}">${_show.name}</a>
+			</td>
+			<td width="43%">
+				<span class="status">
+				${_show.status}
+				</span>
+			</td>
+			<td>
+				<a target="_blank" href="${_show.alloUrl}"><img src="@{'/public/images/btnSearch32.png'}" /></a>
+			</td>
+		</tr>
+	</table>
+</div>

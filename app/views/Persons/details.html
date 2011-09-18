@@ -1,0 +1,29 @@
+#{extends 'main.html' /} 
+#{set title:'Les Gens' /}
+<div class="show">
+	<h3>${person.firstName} ${person.lastName}</h3>
+	#{if shows && staffs} 
+		#{list items:shows, as:'show'}
+			<div class="show">
+				<table width="100%">
+					<tr>
+						<td width="50%">
+							<a class="show-name" href="@{Shows.details(show.id)}">${show.name}</a>
+						</td>
+						<td width="50%">
+							<a class="role" href="@{ShowCtrl.edit(show.id)}">${staffs.get(show_index - 1).role}</a>
+						</td>
+						<td>
+							<a href="@{Staffs.delete(staffs.get(show_index - 1).id)}"><img src="@{'/public/images/btnDel32.png'}" /></a>
+						</td>
+					</tr>
+				</table>
+			</div>
+		#{/list} 
+	#{/if} 
+	#{else}
+		<div class="empty">There is currently nothing to read here.</div>
+	#{/else}
+	<br/>
+	<a class="role" href="@{Staffs.addFromP(person.id)}">Add a staff</a>
+</div>

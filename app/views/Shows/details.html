@@ -1,0 +1,42 @@
+#{extends 'main.html' /} #{set title:'Les Seriz' /}
+
+<div class="show">
+	<h3 class="show-name">${sh.name} &nbsp;&nbsp;&nbsp;<i>${network}</i></h3>
+	<h6 class="role">${sh.status} ${sh.outDate?.format('dd/MM/yy')}</h6>
+	#{if staffs}
+	<h4 class="show-name">Staff</h4>
+	#{list items:staffs, as:'staff'}
+		<div class="show">
+			<table width="100%">
+				<tr>
+					<td width="50%">
+						<a class="show-name" href="@{Persons.details(persons.get(staff_index - 1).id)}">${persons.get(staff_index - 1).firstName} ${persons.get(staff_index - 1).lastName}</a>
+					</td>
+					<td width="50%">
+						<a class="role" href="@{Persons.details(persons.get(staff_index - 1).id)}">${staff.role}</a>
+					</td>
+					<td>
+						<a href="@{Staffs.delete(staff.id, sh.id)}"><img src="@{'/public/images/btnDel32.png'}" /></a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	#{/list} 
+	#{/if} 
+	#{else}
+		<div class="empty">No staff for that show.</div>
+	#{/else}
+	<br/>
+	<a class="role" href="@{Staffs.addFromS(sh.id)}">Add a staff</a><br/><br/>
+	<a href="@{ShowCtrl.edit(sh.id)}">Edit</a><br/>
+	<a href="@{Shows.all}">All</a><br/>
+	<a href="@{Shows.toggle(sh.id)}">
+	#{if sh.getListed()}
+	Ne plus lister
+	#{/if}
+	#{else}
+	Lister
+	#{/else}
+	</a><br/>
+	<a target="_blank" href="${sh.alloUrl}">See on Allociné</a>
+</div>

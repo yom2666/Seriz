@@ -1,0 +1,12 @@
+#{extends 'main.html' /} 
+#{set title:'Les Networks' /} 
+#{if networks} 
+	#{list items:networks, as:'network'}
+		<div class="show">
+			<a class="show-name" href="@{Networks.details(network.id)}">${network.name}</a>
+		</div>
+	#{/list} 
+#{/if} 
+#{else}
+	<div class="empty">There is currently nothing to read here.</div>
+#{/else}

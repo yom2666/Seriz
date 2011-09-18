@@ -1,0 +1,16 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if flash.error}
+    <p style="color:#c00">
+        ${flash.error}
+    </p>
+#{/if}
+ 
+<form action="@{doAdd}" method="GET">
+	<input type="hidden" name="urlBack" value="${urlBack}" />
+    Person : #{select 'personId', items:persons, valueProperty:'id', labelProperty:'string', value:pId/}<br/>
+    Show : #{select 'showId', items:shows, valueProperty:'id', labelProperty:'name', value:shId/}<br/>
+    Role : <span class="show-name"> <input type="text" name="role" value="" /> </span><br/>
+    <input type="submit" value="Add Staff" />
+</form> 

@@ -1,0 +1,40 @@
+#{extends 'main.html' /} #{set title:'Les Seriz' /}
+
+<div class="show">
+	<h3 class="show-name">${sh.name}</h3>
+	#{form @ShowCtrl.showEdit()} 
+	<input type="hidden" name="id" value="${sh.id}" /><br/>
+	Name : <span class="show-name"> <input type="text" name="showName" value="${sh.name}" /> </span><br/>
+	Status : #{select 'status', items:status, valueProperty:'name', labelProperty:'string', value:sh.status/}<br/>
+	Date : <input type="text" name="outDate" value="${sh.outDate?.format('dd/MM/yy')}" /><br/>
+	Network : #{select 'networkId', items:networks, labelProperty:'name', value:sh.network?.id/}<br/>
+	AlloId : <input type="text" name="alloId" value="${sh.alloId}" /><br/>
+	BetaSerie ? <input type="checkbox" name="betaSeries" ${sh.betaSeries ? 'checked="checked"' : ''}><br/><br/>
+	<input type="submit" value="Save" /><br/>
+	#{/form}
+	<br/><br/>
+	#{if staffs} 
+	#{list items:staffs, as:'staff'}
+		<div class="show">
+			<table width="100%">
+				<tr>
+					<td width="50%">
+						<a class="show-name" href="@{Persons.details(persons.get(staff_index - 1).id)}">${persons.get(staff_index - 1).firstName} ${persons.get(staff_index - 1).lastName}</a>
+					</td>
+					<td width="50%">
+						<a class="role" href="@{Persons.details(persons.get(staff_index - 1).id)}">${staff.role}</a>
+					</td>
+					<td>
+						<a href="@{Staffs.delete(staff.id, sh.id)}"><img src="@{'/public/images/btnDel32.png'}" /></a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	#{/list} 
+	#{/if} 
+	#{else}
+		<div class="empty">No staff for that show.</div>
+	#{/else}
+	<br/>
+	<a class="role" href="@{Staffs.addFromS(sh.id)}">Add a staff</a> 
+</div>

@@ -1,0 +1,12 @@
+#{extends 'main.html' /} 
+#{set title:'Les Gens' /} 
+#{if persons} 
+	#{list items:persons, as:'person'}
+		<div class="show">
+			<a class="show-name" href="@{Persons.details(person.id)}">${person.firstName} ${person.lastName}</a>
+		</div>
+	#{/list} 
+#{/if} 
+#{else}
+	<div class="empty">There is currently nothing to read here.</div>
+#{/else}

@@ -1,0 +1,20 @@
+<div class="show"><a name="sh-${_show.id}" ></a>
+	<table width="100%">
+		<tr>
+			<td width="53%">
+			<a class="show-name" href="@{ShowCtrl.edit(_show.id)}">${_show.name}</a>
+			</td>
+			<td width="12%">
+				<span class="status">
+				#{if (indexof = _networks.indexOf(_show.network)) >= 0}
+					${_networks.get(indexof)}
+				#{/if}
+				</span>
+			</td>
+			<td>
+				<a target="_blank" href="${_show.alloUrl}"><img src="@{'/public/images/btnSearch32.png'}" /></a>
+				#{a @Shows.delete(_show.id)}<img src="@{'/public/images/btnDel32.png'}" />#{/a}
+			</td>
+		</tr>
+	</table>
+</div>

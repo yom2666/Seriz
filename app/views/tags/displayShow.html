@@ -1,0 +1,33 @@
+<div class="show"><a name="sh-${_show.id}" ></a>
+	<table width="100%">
+		<tr>
+			<td width="53%">
+			#{if _show.betaSeries}
+				<u><!-- </u><img src="@{'/public/images/btnChk32.png'}" />&nbsp;&nbsp;-->
+			#{/if}
+			<a class="show-name" href="@{ShowCtrl.edit(_show.id)}">${_show.name}</a>
+			#{if _show.betaSeries}
+				</u>
+			#{/if}
+			</td>
+			<td width="12%">
+				<span class="status">${_show.status.getString()}</span>
+			</td>
+			<td width="12%">
+				<span class="status">${_show.outDate?.format('dd/MM/yy')}</span>
+			</td>
+			<td>
+				#{if _show.hasAlloUrl()}
+					<a target="_blank" href="${_show.alloUrl}"><img src="@{'/public/images/allocine.ico'}" /></a>
+				#{/if}
+				#{else}
+					<a target="_blank" href="${_show.alloUrl}"><img src="@{'/public/images/btnSearch32.png'}" /></a>
+				#{/else}
+				#{a @ShowCtrl.weight(_show.id, -1)}<img src="@{'/public/images/btnDwn32.png'}" />#{/a}
+				#{a @ShowCtrl.weight(_show.id, 0)}<img src="@{'/public/images/btnVal32.png'}" />#{/a}
+				#{a @ShowCtrl.weight(_show.id, 1)}<img width="32px" src="@{'/public/images/btnUp32.png'}" />#{/a}
+				#{a @ShowCtrl.delete(_show.id)}<img src="@{'/public/images/btnDel32.png'}" />#{/a}
+			</td>
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title:'Les Seriz' /}
+ 
+#{if shows}
+	#{list items:shows, as:'show'}
+		<div class="show"><a name="sh-${show.id}" ></a>
+			<table width="100%">
+				<tr>
+					<td width="53%">
+					<a class="show-name" href="@{Shows.details(show.id)}">${show.name}</a>
+					</td>
+					<td width="12%">
+						<span class="status">
+						#{if (indexof = networks.indexOf(show.network)) >= 0}
+							${networks.get(indexof)}
+						#{/if}
+						</span>
+					</td>
+					<td>
+						<a target="_blank" href="${show.alloUrl}"><img src="@{'/public/images/btnSearch32.png'}" /></a>
+						#{a @Shows.delete(show.id)}<img src="@{'/public/images/btnDel32.png'}" />#{/a}
+					</td>
+				</tr>
+			</table>
+		</div>
+   	#{/list}
+#{/if}
+ 
+#{else}
+    <div class="empty">
+        There is currently nothing to read here.
+    </div>
+#{/else}

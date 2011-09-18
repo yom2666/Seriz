@@ -1,0 +1,15 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       ShowCtrl.index
+*		/s/{action}/{id}						ShowCtrl.{action}
+*		/s/{action}/?							ShowCtrl.{action}
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}/{id}             {controller}.{action}
+*       /{controller}/{action}/?                {controller}.{action}

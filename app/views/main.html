@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}">
+        #{get 'moreStyles' /}
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <script src="@{'/public/javascripts/jquery-1.4.2.min.js'}" type="text/javascript" charset="utf-8"></script>
+        #{get 'moreScripts' /}
+    </head>
+    <body>
+        
+        <div id="header">
+            <div id="logo">
+                YoM
+            </div>
+            <ul id="tools">
+                <li>
+                    <!-- <a href="#">Log in to write something</a> -->
+                </li>
+            </ul>
+            <div id="title">
+                <span class="about">About this blog</span>
+                <h1><a href="@{ShowCtrl.index()}">Seriz</a></h1>
+                <h2>Gestionnaire pratik</h2>
+            </div>
+        </div>
+        
+        <div id="main">
+        <div>
+	<span class="more">
+	#{if alpha}
+		<a href="@{ShowCtrl.index}">
+	#{/if}
+	#{else}
+		<a href="@{ShowCtrl.alpha}">
+	#{/else}
+	<img src="@{'/public/images/btnSort16.png'}" />&nbsp;&nbsp;
+	#{if alpha}
+		Date Sort
+	#{/if}
+	#{else}
+		Alpha Sort
+	#{/else}
+	</a></span>
+	#{if page == "show"}
+		&nbsp;&nbsp;<span class="more"><a href="@{ShowCtrl.add}"><img src="@{'/public/images/btnPlus16.png'}" />&nbsp;&nbsp;New Show</a></span>
+	#{/if}
+	#{else}
+		&nbsp;&nbsp;<span class="more"><a href="@{ShowCtrl.index}"><img src="@{'/public/images/btnPlus16.png'}" />&nbsp;&nbsp;All Shows</a></span>
+	#{/else}
+	#{if page == "network"}
+		&nbsp;&nbsp;<span class="more"><a href="@{Networks.add}"><img src="@{'/public/images/btnPlus16.png'}" />&nbsp;&nbsp;New Network</a></span>
+	#{/if}
+	#{else}
+		&nbsp;&nbsp;<span class="more"><a href="@{Networks.all}"><img src="@{'/public/images/btnPlus16.png'}" />&nbsp;&nbsp;All Networks</a></span>
+	#{/else}
+	#{if page == "person"}
+		&nbsp;&nbsp;<span class="more"><a href="@{Persons.add}"><img src="@{'/public/images/btnPlus16.png'}" />&nbsp;&nbsp;New Person</a></span>
+	#{/if}
+	#{else}
+		&nbsp;&nbsp;<span class="more"><a href="@{Persons.all}"><img src="@{'/public/images/btnPlus16.png'}" />&nbsp;&nbsp;All Persons</a></span>
+	#{/else}
+</div><br/><br/>
+            #{doLayout /} 
+        </div>
+        
+        <p id="footer">
+            Seriz is an handy tracker for shows built with the 
+            <a href="http://www.playframework.org">Play framework</a>.
+        </p>
+        
+    </body>
+</html>
